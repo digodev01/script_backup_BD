@@ -28,3 +28,26 @@ Este script em Python automatiza o processo de download, extração e restauraç
    ```bash
    git clone https://github.com/seuusuario/automacao-backup-postgresql.git
    cd automacao-backup-postgresql
+   Instale as bibliotecas Python necessárias:
+
+pip install paramiko
+Configure o script:
+
+Atualize as informações de conexão com o servidor SFTP no script (sftp_host, sftp_username, etc.)
+Atualize os detalhes de conexão com o banco de dados PostgreSQL (db_name, db_user, etc.)
+Configure as credenciais de e-mail e o destinatário para envio das notificações.
+
+2. Executando o Script
+Execute o script com:
+
+python3 backup_automation.py
+O script fará automaticamente:
+
+Verificação da disponibilidade da rede.
+Download do arquivo de backup mais recente do servidor remoto SFTP.
+Descompactação do backup.
+Restauração do backup no banco de dados PostgreSQL.
+Envio de e-mail com o arquivo de log após a conclusão.
+
+Licença
+Este projeto está licenciado sob a licença MIT.
