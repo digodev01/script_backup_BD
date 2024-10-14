@@ -18,7 +18,7 @@ Este projeto automatiza o processo de **download, descompactação e restauraç�
 ## **Pré-requisitos**
 
 1. **Sistema Operacional**  
-   - Linux (Debian/Ubuntu recomendado)  
+   - Linux (Debian/Ubuntu recomendado) ou Windows/mac com ambiente virtual 
    - Testado em ambientes com PostgreSQL e SFTP configurados.  
 
 2. **Dependências Python**  
