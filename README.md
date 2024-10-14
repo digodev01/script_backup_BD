@@ -27,7 +27,7 @@ Este projeto automatiza o processo de **download, descompactação e restauraç�
    ```
    ## Verificação de Outras Dependências
 
-As seguintes bibliotecas e módulos são **integrados ao Python** e **não precisam ser instalados separadamente**:
+Essas dependências são nativas e vêm com qualquer instalação do Python (versão 3.x ou superior). Por isso, **não é necessário instalá-las manualmente com `pip`**.
 
 - **Bibliotecas Padrão:**
   - `smtplib`: Biblioteca para envio de e-mails via protocolo SMTP.
@@ -39,9 +39,6 @@ As seguintes bibliotecas e módulos são **integrados ao Python** e **não preci
 - **Módulos Internos:**
   - `zipfile`: Manipulação de arquivos no formato ZIP.
   - `subprocess`: Execução de comandos do sistema diretamente via Python.
-
-Essas dependências são nativas e vêm com qualquer instalação do Python (versão 3.x ou superior). Por isso, **não é necessário instalá-las manualmente com `pip`**.
-
 
 3. **PostgreSQL**  
    - O **pg_restore** deve estar disponível no PATH do sistema.
