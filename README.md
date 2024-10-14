@@ -158,6 +158,6 @@ Distribuído sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais
 
 ## **Contato**
 
-- **E-mail**: nevolitelecom@nevolitelecom.com.br  
+- **E-mail**: sistemas@nevolitelecom.com.br  
 - **Website**: [Nevoli Telecom](https://www.nevolitelecom.com.br)  
 
