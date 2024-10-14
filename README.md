@@ -63,24 +63,24 @@ Essas dependências são nativas e vêm com qualquer instalação do Python (ver
    Edite as seguintes configurações no script:
 
    ```python
-   # Configurações de SFTP
-   sftp_host = 'xxxxxxx'
-   sftp_username = 'xxxxxxx'
-   sftp_password = 'xxxxxx'
+   # Configurações de SFTP 
+   sftp_host = 'xxxxxxx' #Endereço IP ou hostname do servidor SFTP.
+   sftp_username = 'xxxxxxx'# Nome de usuário para autenticação no SFTP.
+   sftp_password = 'xxxxxx' # Senha para o usuário do SFTP. 
 
    # Configurações locais
-   local_directory_path = 'xxxxxxx'
+   local_directory_path = 'xxxxxxx'  # Diretório local onde o backup será salvo.
 
    # Banco de Dados PostgreSQL
-   db_name = 'xxxxx'
-   db_user = 'xxxxxx'
-   db_host = 'xxxxxx'
-   db_password = 'xxxxxx'
+   db_name = 'xxxxx' # nome do banco de dados
+   db_user = 'xxxxxx' # usuario que irá conectar no banco de dados
+   db_host = 'xxxxxx' # Endereço IP ou hostname do servidor PostgreSQL.
+   db_password = 'xxxxxx' # Senha do usuário do banco de dados.
 
    # Configurações de E-mail
-   smtp_server = 'xxxxxxxxxxxxxx'
-   smtp_username = 'xxxxxxxxxx'
-   smtp_password = 'xxxxxxxxxxxxx'
+   smtp_server = 'xxxxxxxxxxxxxx' # Servidor SMTP usado para envio de e-mails.
+   smtp_username = 'xxxxxxxxxx' # Nome de usuário para autenticação no servidor SMTP.
+   smtp_password = 'xxxxxxxxxxxxx'  # Senha para o servidor de e-mail.
    ```
 
 ---
