@@ -97,7 +97,7 @@ Essas dependências são nativas e vêm com qualquer instalação do Python (ver
 
 3. **Acompanhar os Logs**  
    Os logs são salvos em:  
-   `xxxxxxxxxxxxxxxxxxxx`
+   `xxxxxxxxxxxxxxxxxxxx` #local onde os arquivos de log serão salvos
 
 ---
 
