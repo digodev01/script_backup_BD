@@ -25,6 +25,23 @@ Este projeto automatiza o processo de **download, descompactação e restauraç�
    ```bash
    pip install paramiko
    ```
+   ## Verificação de Outras Dependências
+
+As seguintes bibliotecas e módulos são **integrados ao Python** e **não precisam ser instalados separadamente**:
+
+- **Bibliotecas Padrão:**
+  - `smtplib`: Biblioteca para envio de e-mails via protocolo SMTP.
+  - `os`: Funções relacionadas ao sistema operacional (manipulação de arquivos, caminhos, etc.).
+  - `time`: Manipulação de tempo e cronômetros.
+  - `socket`: Comunicação em rede e verificação de disponibilidade de conexão.
+  - `logging`: Registro de logs para depuração e monitoramento.
+
+- **Módulos Internos:**
+  - `zipfile`: Manipulação de arquivos no formato ZIP.
+  - `subprocess`: Execução de comandos do sistema diretamente via Python.
+
+Essas dependências são nativas e vêm com qualquer instalação do Python (versão 3.x ou superior). Por isso, **não é necessário instalá-las manualmente com `pip`**.
+
 
 3. **PostgreSQL**  
    - O **pg_restore** deve estar disponível no PATH do sistema.
