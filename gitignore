@@ -1,0 +1,29 @@
+
+# Logs
+*.log
+logs/
+**/logs/
+
+# Arquivos de backup e pacotes comprimidos
+*.zip
+*.backup
+
+# Arquivos temporários e cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Credenciais sensíveis
+*.env
+
+# Diretórios específicos do projeto
+/home/nevoli/Documentos/
+
+# Arquivos relacionados ao sistema operacional
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# Configurações do ambiente de desenvolvimento
+.vscode/
+.idea/
