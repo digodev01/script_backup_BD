@@ -1,43 +1,59 @@
-import paramiko  # Biblioteca para conexão SFTP
-import zipfile   # Manipulação de arquivos ZIP
-import os        # Funções de sistema operacional
-import logging   # Registro de logs
-import subprocess  # Execução de comandos do sistema
-import time      # Funções de tempo e cronômetro
-import smtplib   # Envio de e-mails
-from email.mime.multipart import MIMEMultipart  # Estrutura de e-mails complexos
-from email.mime.text import MIMEText  # Corpo de e-mails em texto
-from email.mime.base import MIMEBase  # Anexo de arquivos ao e-mail
-from email import encoders  # Codificação de anexos
-import socket  # Verificação de rede
+import os
+import zipfile
+import logging
+import subprocess
+import time
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import socket
+from cryptography.fernet import Fernet
+from dotenv import load_dotenv
+import paramiko
 
-logging.basicConfig(level=logging.DEBUG)  # Configura o nível de detalhamento dos logs
+# Carregar variáveis de ambiente do arquivo .env
+load_dotenv()
+
+# Configuração de logging
+logging.basicConfig(level=logging.DEBUG)
+
+# Carregar chave secreta do ambiente
+secret_key = os.getenv('SECRET_KEY').encode()
+cipher = Fernet(secret_key)
+
+# Funções de criptografia e descriptografia
+def decrypt(encrypted_data: str) -> str:
+    """Descriptografa uma string."""
+    return cipher.decrypt(encrypted_data.encode()).decode()
+
+# Informações sensíveis (encriptadas previamente)
+SFTP_PASSWORD = decrypt(os.getenv('SFTP_PASSWORD'))
+DB_PASSWORD = decrypt(os.getenv('DB_PASSWORD'))
+SMTP_PASSWORD = decrypt(os.getenv('SMTP_PASSWORD'))
 
 # Configurações de SFTP e diretórios
-sftp_host = '200.125.129.90'
-sftp_username = 'backup_erp'
-sftp_password = 'CkEfTB9DGR'
-remote_directory_path = 'bkp/'
+sftp_host = ''
+sftp_username = ''
+remote_directory_path = ''
 
-local_directory_path = '/home/nevoli/Documentos/'
-extract_dir = '/home/nevoli/Documentos/'
-backup_file_name = 'dbemp00509.backup'
+local_directory_path = '/'
+extract_dir = '/'
+backup_file_name = ''
 extracted_file_path = os.path.join(extract_dir, backup_file_name)
 
 # Configurações do banco de dados PostgreSQL
-db_name = 'nevoli_DB'
-db_user = 'postgres'
-db_host = '10.1.133.6'
-db_port = '5432'
-db_password = 'nev@litelec@m'
+db_name = ''
+db_user = ''
+db_host = ''
+db_port = ''
 
 # Configurações de log e e-mail
-log_file_path = '/home/nevoli/Documentos/logs/cron_script_bkp.log'
-recipient_email = 'nevolitelecom@nevolitelecom.com.br, sistemas@nevolitelecom.com.br'
-smtp_server = 'server18.mailgrid.com.br'
+log_file_path = ''
+recipient_email = ''
+smtp_server = ''
 smtp_port = 587
-smtp_username = 'nevolitelecom@nevolitelecom.com.br'
-smtp_password = 'syfd743mdm2h'
 
 def is_network_available():
     """Verifica se a rede está disponível."""
@@ -51,7 +67,7 @@ def send_email(subject, body, attachment_path=None):
     """Envia um e-mail com ou sem anexo."""
     logging.info("Preparando o e-mail para envio.")
     msg = MIMEMultipart()
-    msg['From'] = smtp_username
+    msg['From'] = sftp_username  # Usando o nome de usuário do SMTP
     msg['To'] = recipient_email
     msg['Subject'] = subject
     msg.attach(MIMEText(body, 'plain'))
@@ -71,7 +87,7 @@ def send_email(subject, body, attachment_path=None):
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()
-            server.login(smtp_username, smtp_password)
+            server.login(sftp_username, SMTP_PASSWORD)
             server.send_message(msg)
             logging.info("E-mail enviado com sucesso.")
     except Exception as e:
@@ -83,7 +99,7 @@ def download_latest_backup():
     logging.info("Iniciando o download do backup.")
     try:
         transport = paramiko.Transport((sftp_host, 22))
-        transport.connect(username=sftp_username, password=sftp_password)
+        transport.connect(username=sftp_username, password=SFTP_PASSWORD)
         sftp = paramiko.SFTPClient.from_transport(transport)
 
         remote_files = sftp.listdir(remote_directory_path)
@@ -149,7 +165,7 @@ def restore_backup_to_db(backup_file_path):
             '--no-owner', '--no-privileges', '-v', backup_file_path
         ]
         env = os.environ.copy()
-        env['PGPASSWORD'] = db_password
+        env['PGPASSWORD'] = DB_PASSWORD
         subprocess.run(restore_command, env=env, check=True)
         logging.info("Backup restaurado com sucesso.")
     except Exception as e:
@@ -181,4 +197,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
