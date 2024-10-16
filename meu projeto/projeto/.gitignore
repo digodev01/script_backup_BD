@@ -27,3 +27,7 @@ Thumbs.db  # Windows
 # Configurações do ambiente de desenvolvimento
 .vscode/
 .idea/
+
+# .gitignore
+.secret.key
+.env
