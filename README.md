@@ -62,20 +62,20 @@ Essas dependências são nativas e vêm com qualquer instalação do Python (ver
 
    ```python
    # Configurações de SFTP
-   sftp_host = '200.125.129.90'
-   sftp_username = 'backup_erp'
+   sftp_host = ''
+   sftp_username = ''
 
    # Configurações locais
-   local_directory_path = '/home/nevoli/Documentos/'
+   local_directory_path = ''
 
    # Banco de Dados PostgreSQL
-   db_name = 'nevoli_DB'
+   db_name = ''
    db_user = 'postgres'
-   db_host = '10.1.133.6'
+   db_host = ''
 
    # Configurações de E-mail
-   smtp_server = 'server18.mailgrid.com.br'
-   smtp_username = 'nevolitelecom@nevolitelecom.com.br'
+   smtp_server = ''
+   smtp_username = ''
    ```
 
 ---
